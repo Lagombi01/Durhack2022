@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api for Durhack",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnny-stevie/Durhack2022.git"
+  },
+  "keywords": [
+    "durhack"
+  ],
+  "author": "John Wall && Joseph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnny-stevie/Durhack2022/issues"
+  },
+  "homepage": "https://github.com/johnny-stevie/Durhack2022#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
