@@ -1,33 +1,32 @@
 const fs = require("fs");
 const path = require("path");
 const getOlympicData = (req, res) => {
-    try{
+  try {
     const filename = req.params.filename;
-    
-    if (filename){
-        const data = fs.readFileSync(filename);
-        res.send(data);
+    const extension = "../data/";
+    if (filename) {
+      const data = fs.readFileSync(path.join(__dirname, extension + filename));
+      res.send(data);
+    } else {
+      res.send(getAllFilesInDirectory(path.join(__dirname, extension)));
     }
-    else{
-        res.send(getAllFilesInDirectory(path.join(__dirname,"/data")))
-    }
-    }catch(err){
-        console.log(err)
-    }
+  } catch (err) {
+    // console.log();
+    console.log(err);
+  }
 };
 const getAllFilesInDirectory = (directory) => {
-    try{
-         const files = fs.readdirSync(directory);
-        let html = "<h1>Olympics Data </h1>";
-        for(let file of files){
-            html += `<a href='${file}'>${file}</a>`;
-        };
-        return html;
+  try {
+    const files = fs.readdirSync(directory);
+    let html = "<h1>Olympics Data </h1>";
+    for (let file of files) {
+      html += `<a href='${file}'>${file}</a>`;
     }
-    catch(err){
-        console.error(err);
-    };
+    return html;
+  } catch (err) {
+    console.error(err);
+  }
 };
 module.exports = {
-    getOlympicData
-}
+  getOlympicData,
+};
