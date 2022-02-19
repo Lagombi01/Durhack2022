@@ -33,4 +33,7 @@ app.get("/datatype/olympics/:filename", getOlympicData);
 app.get("/datatype/olympics/", getOlympicData);
 app.post("/datatype/olympics/", upload.single("file"), postOlympicData);
 
+
+app.get("graphtype/olympics/",)
+
 app.listen(8080);
