@@ -22,10 +22,8 @@ def read_Poll(poll_id):
         votes = answer['votes']
         dictionary[athlete] = votes
 
-    with open("result.json", "w") as r:
-        output = json.dump(dictionary, r)
-
-    # send to API
+    response = requests.post("http://127.0.0.1:3000/sentimental/poll", #json=json.dumps(dictionary),
+                             headers={**dictionary,**{'API-KEY': client.consumer_key}})
 
 
 def generate_Media(tweet):
@@ -34,10 +32,11 @@ def generate_Media(tweet):
     input_data = {
         "age": values[0],
         "height": values[1],
-        "weight": values[2]
+        "weight": values[2],
+        "interval": values[3]
     }
 
-    input = json.dump(input_data, r)
+    input = json.dumps(input_data)
 
     # send to API
     # media = requests.post("", json=query, headers={'API-KEY': client.consumer_key}
@@ -77,7 +76,7 @@ def main():
             "answers": list_of_names,
             "priv": False,
             "co": False,
-            "deadline": poll_end_time,
+            "deadline": str(poll_end_time),
             "captcha": False
         }
     }
@@ -105,4 +104,4 @@ def main():
             read_Poll(poll["content_id"])
 
 
-main()
+read_Poll("83gef2yre")
