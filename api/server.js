@@ -45,4 +45,8 @@ app.post("/sentimental/poll", (req, res) => {
   console.log(req.body);
 });
 
+app.post("/probability/query", (req, res) => {
+  console.log(req.body);
+});
+
 app.listen(8080);
