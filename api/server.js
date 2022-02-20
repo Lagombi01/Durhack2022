@@ -47,4 +47,8 @@ app.post("/sentimental/poll", (req, res) => {
 });
 
 app.post("/receive-params-send-prediction", postPrediction);
+app.post("/probability/query", (req, res) => {
+  console.log(req.body);
+});
+
 app.listen(8080);
