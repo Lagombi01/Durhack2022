@@ -5,6 +5,12 @@ const { postOlympicData } = require("./olympics/post_olympic_data");
 const path = require("path");
 const app = express();
 
+const bodyParser = require("body-parser");
+
+//use bodyParser() to let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 const storage = multer.diskStorage({
   destination: (req, f, cb) => {
     const dest = req.params.dest;
@@ -33,7 +39,9 @@ app.get("/datatype/olympics/:filename", getOlympicData);
 app.get("/datatype/olympics/", getOlympicData);
 app.post("/datatype/olympics/", upload.single("file"), postOlympicData);
 
-
-app.get("graphtype/olympics/",)
+app.post("/sentimental/poll", (req, res) => {
+  console.log(req.body);
+});
+app.get("graphtype/olympics/");
 
 app.listen(8080);
