@@ -8,6 +8,10 @@ from keras.layers.core import Dense
 import statistics as st
 import math
 
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 model = Sequential()
 model.add(Dense(64, input_dim=4, use_bias=True, activation='relu'))
 model.add(Dense(128, use_bias=True, activation='relu'))
