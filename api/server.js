@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const { getOlympicData } = require("./olympics/get_olympic_data");
 const { postOlympicData } = require("./olympics/post_olympic_data");
+const { getOlympicGraph } = require("./olympics/get_olympic_graph");
 const path = require("path");
 const app = express();
 
@@ -33,7 +34,6 @@ app.get("/datatype/olympics/:filename", getOlympicData);
 app.get("/datatype/olympics/", getOlympicData);
 app.post("/datatype/olympics/", upload.single("file"), postOlympicData);
 
+app.get("/graphtype/olympics/", getOlympicGraph);
 
-app.get("graphtype/olympics/",)
-
-app.listen(8080);
+app.listen(3000, "0.0.0.0");
