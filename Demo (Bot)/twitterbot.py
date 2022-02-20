@@ -26,6 +26,20 @@ def read_Poll(poll_id):
         output = json.dump(dictionary, r)
 
     # send to API
+    dictionary = {}
+    url = "https://strawpoll.com/api/poll/" + poll_id
+    results = requests.get(url).json()
+    poll_info = results['content']
+    poll_content = poll_info['poll']
+    poll_answers = poll_content['poll_answers']
+
+    for answer in poll_answers:
+        athlete = answer['answer']
+        votes = answer['votes']
+        dictionary[athlete] = votes
+    print(dictionary)
+    response = requests.post("http://127.0.0.1:8080/sentimental/poll", data=dictionary,
+                             headers={'API-KEY': client.consumer_key})
 
 
 def generate_Media(tweet):
@@ -105,4 +119,5 @@ def main():
             read_Poll(poll["content_id"])
 
 
-main()
+#main()
+read_Poll("83gef2yre")

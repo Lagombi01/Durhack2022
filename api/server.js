@@ -7,6 +7,7 @@ const path = require("path");
 const app = express();
 
 const bodyParser = require("body-parser");
+const { postPrediction } = require("./olympics/get_prediction");
 
 //use bodyParser() to let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,4 +46,5 @@ app.post("/sentimental/poll", (req, res) => {
   console.log(req.body);
 });
 
+app.post("/receive-params-send-prediction", postPrediction);
 app.listen(8080);
