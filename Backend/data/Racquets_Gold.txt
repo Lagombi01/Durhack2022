@@ -1,0 +1,2 @@
+countries,P(N|X),P(N)
+GBR,1,1
