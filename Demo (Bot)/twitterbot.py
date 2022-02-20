@@ -2,7 +2,6 @@ import tweepy
 import requests
 import time
 import json
-import base64
 from datetime import datetime, timezone, timedelta
 from boot import create_api
 from PIL import Image
@@ -24,14 +23,25 @@ def read_Poll(poll_id):
         dictionary[athlete] = votes
 
     with open("result.json", "w") as r:
-        json.dump(dictionary, r)
+        output = json.dump(dictionary, r)
+
+    # send to API
 
 
-# def generate_Media(tweet):
-    # query = tweet.text.json
+def generate_Media(tweet):
+    query = tweet.text
+    values = query.split(", ")
+    input_data = {
+        "age": values[0],
+        "height": values[1],
+        "weight": values[2]
+    }
+
+    input = json.dump(input_data, r)
+
+    # send to API
     # media = requests.post("", json=query, headers={'API-KEY': client.consumer_key}
     #                      ).json()
-    # image = base64.b64decode(media)
 
 
 def main():
