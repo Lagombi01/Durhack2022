@@ -1,0 +1,2 @@
+countries,P(N|X),P(N)
+FRA,1,1
