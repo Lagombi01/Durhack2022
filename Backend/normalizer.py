@@ -16,7 +16,7 @@ model.add(Dense(64, use_bias=True, activation='relu'))
 model.add(Dense(64, use_bias=True, activation='relu'))
 model.add(Dense(3, use_bias=True, activation='sigmoid'))
 
-sport = "Weightlifting"
+sport = sys.argv[1]
 
 checkpoint_path = sport + "/cp.ckpt"
 checkpoint_dir = os.path.dirname(checkpoint_path)
@@ -36,7 +36,7 @@ model.load_weights(checkpoint_path)
 
 #print(model.predict(training_data))
 
-nationality = sys.argv[1]
+nationality = sys.argv[2]
 
 goldPN = 0
 goldM = 0
@@ -129,10 +129,10 @@ def clamp(value, min = 0, max = 0.99):
             
 response = ""
             
-age = float(sys.argv[2])
-weight = float(sys.argv[3])
-height = float(sys.argv[4])
-sex = float(sys.argv[5])
+age = float(sys.argv[3])
+weight = float(sys.argv[4])
+height = float(sys.argv[5])
+sex = float(sys.argv[6])
             
 data = model.predict([[19,50,160,0]])[0]
 response += str(data) + "\n"
@@ -161,12 +161,12 @@ if (len(sys.argv) == 12):
         
         d = float(frame[0])
 
-    goldB = float(sys.argv[6])
-    goldN = float(sys.argv[7])
-    silverB = float(sys.argv[8])
-    silverN = float(sys.argv[9])
-    bronzeB = float(sys.argv[10])
-    bronzeN = float(sys.argv[11])
+    goldB = float(sys.argv[7])
+    goldN = float(sys.argv[8])
+    silverB = float(sys.argv[9])
+    silverN = float(sys.argv[10])
+    bronzeB = float(sys.argv[11])
+    bronzeN = float(sys.argv[12])
 
     finalized = [(d * finalized[0] + (goldB - 0.5) * math.pow(goldN, 1/4)) / d, (d * finalized[0] + (silverB - 0.5) * math.pow(silverN, 1/4)) / d, (d * finalized[0] + (bronzeB - 0.5) * math.pow(bronzeN, 1/4)) / d]
     response += str(finalized) + "\n"
