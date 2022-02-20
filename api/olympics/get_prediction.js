@@ -3,9 +3,11 @@ const fs = require("fs");
 const path = require("path");
 
 const postPrediction = (req, res) => {
-  const { params } = req.body;
+  let { params } = req.body;
+  console.log(req.body);
+  console.log(params);
   params = JSON.parse(params);
-  let cmd = "python3 normalizer.py ";
+  let cmd = "python3 ..\\Backend\\normalizer.py ";
   for (let param of params) {
     cmd += ` ${param}`;
   }
@@ -19,9 +21,8 @@ const postPrediction = (req, res) => {
     const results = fs.readFileSync(
       path.join(__dirname, "../../Backend/results.txt")
     );
-    res.json({ results: JSON.stringify(results) });
+    res.status(200).json({ results: JSON.stringify(results) });
   });
-  res.send();
 };
 
 module.exports = { postPrediction };
