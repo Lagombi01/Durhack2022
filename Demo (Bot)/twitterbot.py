@@ -33,14 +33,14 @@ def generate_Media(tweet):
         "age": values[0],
         "height": values[1],
         "weight": values[2],
-        "interval": values[3]
+        "sex": values[3],
+        "nationality": values[4]
     }
 
-    input = json.dumps(input_data)
+    response = requests.post("http://127.0.0.1:8080/probability/query", json=input_data,
+                             headers={'API-KEY': client.consumer_key}).json()
 
-    # send to API
-    # media = requests.post("", json=query, headers={'API-KEY': client.consumer_key}
-    #                      ).json()
+    # return
 
 
 def main():
@@ -88,20 +88,21 @@ def main():
     last_id = last_tweet.id
 
     while True:
+        print("Monitoring tweets now...")
         time.sleep(30)
         current_time = datetime.now(timezone.utc)
         mentions = api.search_tweets(q="@LSlayer2")
 
         for tweets in mentions:
             if tweets.id > last_id:
-                # image = generate_Media(tweets)
 
-                api.update_status_with_media(status="Here you go!", in_reply_to_status_id=tweets.id,
-                                             auto_populate_reply_metadata=True, filename="Jum-P.png")
+                text = generate_Media(tweets)
+
+                api.update_status(status="", in_reply_to_status_id=tweets.id, auto_populate_reply_metadata=True)
                 last_id = tweets.id
 
         if current_time >= poll_end_time:
             read_Poll(poll["content_id"])
 
 
-read_Poll("83gef2yre")
+main()

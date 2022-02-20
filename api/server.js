@@ -42,6 +42,11 @@ app.post("/datatype/olympics/", upload.single("file"), postOlympicData);
 app.post("/sentimental/poll", (req, res) => {
   console.log(req.body);
 });
+
+app.post("/probability/query", (req, res) => {
+  console.log(req.body);
+});
+
 app.get("graphtype/olympics/");
 
 app.listen(8080);
