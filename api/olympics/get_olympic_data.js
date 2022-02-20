@@ -20,7 +20,7 @@ const getAllFilesInDirectory = (directory) => {
     const files = fs.readdirSync(directory);
     let html = "<h1>Olympics Data </h1>";
     for (let file of files) {
-      html += `<a href='${file}'>${file}</a>`;
+      html += `<a href='${file}'>${file}</a><br>`;
     }
     return html;
   } catch (err) {
