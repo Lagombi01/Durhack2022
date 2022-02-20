@@ -1,0 +1,4 @@
+countries,P(N|X),P(N)
+GBR,0,0.2
+CAN,1,0.6
+USA,0,0.2
